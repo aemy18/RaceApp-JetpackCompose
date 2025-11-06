@@ -1,41 +1,53 @@
 # 🚀 F1 Mobile App: Modern Android Development Showcase
 
-This is a single-module Android application demonstrating a robust, maintainable architecture using **Jetpack Compose** for UI and **Ktor** for networking. The project is designed to fetch and display Formula 1 data, focusing on clean separation of concerns.
+This is a single-module Android application demonstrating a robust, maintainable architecture using **Jetpack Compose** for UI and **Ktor** for networking.  
+The project is designed to fetch and display Formula 1 data, focusing on clean separation of concerns and elegant UI design.
+
+---
+
+## 🖼️ App Screenshots
+
+| Home Screen 1 | Home Screen 2 | Upcoming Race Screen |
+|----------------|----------------|----------------------|
+| ![Home Screen 1](screenshots/home_screen_1.png) | ![Home Screen 2](screenshots/home_screen_2.png) | ![Upcoming Race Screen](screenshots/upcoming_screen.png) |
+
+
+> 📸 These screenshots demonstrate the dynamic UI — including gradient backgrounds, paged race highlights, and real-time upcoming race information.
 
 ---
 
 ## 🎯 Architecture & Technologies
 
-The project strictly follows the **MVVM (Model-View-ViewModel)** architectural pattern and utilizes a modern stack:
+The project follows the **MVVM (Model-View-ViewModel)** architectural pattern using a modern Android stack:
 
-| Concept | Technology Used | Rationale/Benefit Demonstrated |
+| Concept | Technology Used | Rationale / Benefit |
 | :--- | :--- | :--- |
-| **UI Layer** | **Jetpack Compose** | Declarative, reactive UI development and modern Android toolkit adoption. |
-| **Networking** | **Ktor Client** | Lightweight, multiplatform HTTP client for asynchronous data fetching (`ApiService.kt`). |
-| **Dependency Injection** | **Hilt** | Compile-time dependency management, ensuring testability and providing app-wide singletons (`AppModule.kt`). |
-| **State Management** | **Kotlin Flows** (`StateFlow`) | Efficient, thread-safe state communication from the `HomeViewModel` to the `HomeScreen` Composable. |
-| **Navigation** | **Compose Navigation** | Structured and explicit handling of screen transitions and the back stack (`MainActivity.kt`, `NavigationGraph.kt`). |
+| **UI Layer** | **Jetpack Compose** | Declarative, reactive UI development with less boilerplate. |
+| **Networking** | **Ktor Client** | Lightweight, coroutine-based HTTP client for async API calls. |
+| **Dependency Injection** | **Hilt** | Simplifies dependency management and promotes testability. |
+| **State Management** | **Kotlin Flows (`StateFlow`)** | Reactive state handling for ViewModel–UI communication. |
+| **Navigation** | **Compose Navigation** | Handles screen transitions and back-stack management cleanly. |
 
 ---
 
-## 📂 Key Components for Review
+## 📂 Key Components Overview
 
-The structure is optimized for clarity and maintainability:
-
-* **`data/remote/ApiService.kt`**: Contains all Ktor-based suspend functions for remote API calls (e.g., `fetchDrivers()`, `fetchSchedules()`).
-* **`data/repository/HomeRepository.kt`**: The single source of truth for the Home screen data, abstracting the remote layer.
-* **`ui/screens/home_screen/HomeViewModel.kt`**: The core logic component. Manages API calls, handles exceptions, and exposes `UiState.Loading`/`Success`/`Error` via `StateFlow`.
-* **`ui/screens/home_screen/HomeScreen.kt`**: The primary UI composable, responsible for reacting to `HomeViewModel` states and rendering complex elements like the **Horizontal Pager** and the upcoming race countdown.
-* **`MainActivity.kt`**: Handles the main application setup, including Hilt, and the persistent **Bottom Navigation Bar** structure.
-
----
-
-## 🏃 Getting Started
-
-1.  Clone the repository.
-2.  Open in **Android Studio**.
-3.  Build and Run on an emulator or device.
+| Layer | File | Responsibility |
+|-------|------|----------------|
+| **Data Layer** | `data/remote/ApiService.kt` | Defines Ktor-based suspend functions for network requests. |
+|  | `data/repository/HomeRepository.kt` | Acts as a single source of truth for remote data. |
+| **Domain Layer** | *(Optional in MVVM)* | Logic handled within the ViewModel for simplicity. |
+| **ViewModel Layer** | `ui/screens/home_screen/HomeViewModel.kt` | Fetches and exposes data via `UiState` using `StateFlow`. |
+| **UI Layer** | `ui/screens/home_screen/HomeScreen.kt` | Displays driver details, race sessions, and upcoming race. |
+| **App Entry** | `MainActivity.kt` | Initializes Hilt, navigation graph, and bottom bar structure. |
 
 ---
+
+## ⚙️ Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/aemy18/RaceApp-JetpackCompose.git
+
 
 **Developed by: Amit Padhar**
